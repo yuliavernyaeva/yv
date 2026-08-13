@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
   <style>
-    /* ========== ОБЩИЕ ПЕРЕМЕННЫЕ ========== */
     * {
       margin: 0;
       padding: 0;
@@ -39,29 +38,23 @@
       margin: 0 auto;
       padding: 0 20px;
     }
-    /* ========== ШАПКА (белая) ========== */
+    /* ========== ШАПКА ========== */
     .header-white {
       background: var(--bg-light);
-      padding: 25px 0;
-      margin-bottom: 60px;
+      padding: 20px 0;
+      margin-bottom: 40px;
     }
     .header-flex {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
     }
     .logo-wrapper {
       display: flex;
       align-items: center;
       gap: 15px;
       text-decoration: none;
-    }
-    .logo-wrapper img {
-      height: 60px;
-      width: auto;
-      display: block;
     }
     .logo-wrapper .logo-text {
       font-size: 1.2rem;
@@ -73,8 +66,12 @@
     .logo-wrapper .logo-text span {
       color: var(--accent-gold);
     }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
     .nav a {
-      margin-left: 35px;
       text-decoration: none;
       color: var(--text-dark);
       font-weight: 400;
@@ -121,25 +118,6 @@
     .carousel-slide img:hover {
       filter: grayscale(0);
     }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--text-light);
-      font-size: 2.2rem;
-      padding: 12px 20px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-weight: 300;
-      line-height: 1;
-    }
-    .carousel-btn:hover {
-      background: rgba(255,255,255,0.15);
-    }
-    .carousel-btn.prev { left: 15px; }
-    .carousel-btn.next { right: 15px; }
     .carousel-dots {
       display: flex;
       justify-content: center;
@@ -171,8 +149,9 @@
       color: var(--accent-gold);
       font-weight: 400;
     }
-    /* ========== КНОПКА "ЧТО СО МНОЙ ПРОИЗОШЛО" ========== */
-    .story-btn {
+    /* ========== КНОПКИ ========== */
+    .story-btn,
+    .contact-btn {
       display: inline-block;
       padding: 14px 45px;
       border: 1px solid var(--accent-gold);
@@ -185,9 +164,19 @@
       font-weight: 400;
       margin-top: 10px;
     }
-    .story-btn:hover {
+    .story-btn:hover,
+    .contact-btn:hover {
       background: var(--accent-gold);
       color: var(--bg-dark);
+    }
+    .contact-btn {
+      background: var(--accent-gold);
+      color: var(--bg-dark);
+      font-weight: 600;
+    }
+    .contact-btn:hover {
+      background: #b8975a;
+      transform: translateY(-2px);
     }
     /* ========== БЛОК С КУКЛАМИ ========== */
     .dolls-section {
@@ -219,24 +208,6 @@
       max-height: 400px;
       object-fit: contain;
     }
-    /* ========== КНОПКА "СВЯЗАТЬСЯ СО МНОЙ" ВНИЗУ ========== */
-    .contact-btn {
-      display: inline-block;
-      padding: 16px 55px;
-      background: var(--accent-gold);
-      color: var(--bg-dark);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: 0.3s;
-      font-weight: 600;
-      margin-top: 20px;
-    }
-    .contact-btn:hover {
-      background: #b8975a;
-      transform: translateY(-2px);
-    }
     /* ========== ПОДВАЛ ========== */
     footer {
       padding: 40px 0 60px;
@@ -249,29 +220,53 @@
     }
     /* ========== АДАПТИВНОСТЬ ========== */
     @media (max-width: 768px) {
-      .header-flex { flex-direction: column; align-items: flex-start; }
-      .nav a { margin-left: 0; margin-right: 25px; }
-      .carousel-quote { font-size: 1.2rem; }
-      .carousel-slide img { max-height: 350px; }
-      .dolls-carousel .carousel-slide img { max-height: 280px; }
-      .logo-wrapper img { height: 45px; }
+      .header-flex {
+        align-items: flex-start;
+      }
+      .nav {
+        gap: 15px;
+      }
+      .nav a {
+        font-size: 0.85rem;
+      }
+      .carousel-quote {
+        font-size: 1.2rem;
+      }
+      .carousel-slide img {
+        max-height: 350px;
+      }
+      .dolls-carousel .carousel-slide img {
+        max-height: 280px;
+      }
     }
     @media (max-width: 480px) {
-      .carousel-quote { font-size: 1rem; }
-      .carousel-slide img { max-height: 250px; }
-      .dolls-carousel .carousel-slide img { max-height: 200px; }
-      .dolls-section h2 { font-size: 1.3rem; }
+      .carousel-quote {
+        font-size: 1rem;
+      }
+      .carousel-slide img {
+        max-height: 250px;
+      }
+      .dolls-carousel .carousel-slide img {
+        max-height: 200px;
+      }
+      .dolls-section h2 {
+        font-size: 1.3rem;
+      }
+      .nav {
+        gap: 12px;
+      }
+      .nav a {
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ========== ШАПКА (БЕЛАЯ) ========== -->
+<!-- ========== ШАПКА ========== -->
 <header class="header-white">
   <div class="container header-flex">
     <a href="index.html" class="logo-wrapper">
-      <!-- ЛОГОТИП — ТОЛЬКО КАРТИНКА (УБРАЛ ТЕКСТ) -->
-      <img src="images/1.jpg?v=3" alt="Логотип" />
       <span class="logo-text">YULIA <span>VERNYAEVA</span></span>
     </a>
     <div class="nav">
@@ -282,10 +277,9 @@
   </div>
 </header>
 
-<!-- ========== ОСНОВНАЯ КАРУСЕЛЬ ========== -->
+<!-- ========== КАРУСЕЛЬ ========== -->
 <section class="carousel-section" id="gallery">
   <div class="container">
-    <!-- Карусель -->
     <div class="carousel-container" id="mainCarousel">
       <div class="carousel-track">
         <div class="carousel-slide"><img src="images/2.jpg" alt="Фото 2" /></div>
@@ -293,8 +287,6 @@
         <div class="carousel-slide"><img src="images/8.jpg" alt="Фото 8" /></div>
         <div class="carousel-slide"><img src="images/47.jpg" alt="Фото 47" /></div>
       </div>
-      <button class="carousel-btn prev" onclick="moveSlide('mainCarousel', -1)">‹</button>
-      <button class="carousel-btn next" onclick="moveSlide('mainCarousel', 1)">›</button>
     </div>
     <div class="carousel-dots" id="mainDots">
       <span class="active" onclick="goToSlide('mainCarousel', 0)"></span>
@@ -303,13 +295,11 @@
       <span onclick="goToSlide('mainCarousel', 3)"></span>
     </div>
 
-    <!-- Выделенный текст -->
     <div class="carousel-quote">
-      «Перевернула свою жизнь с ног на голову <br />и теперь занимаюсь только тем, что <span>искренне люблю</span>»
+      Перевернула свою жизнь с ног на голову <br />и теперь занимаюсь только тем, что <span>искренне люблю</span>
     </div>
 
-    <!-- Кнопка "что со мной произошло" -->
-    <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank" class="story-btn">что со мной произошло →</a>
+    <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank" class="story-btn">что со мной произошло</a>
   </div>
 </section>
 
@@ -318,7 +308,6 @@
   <div class="container">
     <h2>Уже больше <span>10 лет</span> создаю необыкновенных кукол <br />и учу этому других</h2>
 
-    <!-- Карусель кукол -->
     <div class="dolls-carousel">
       <div class="carousel-container" id="dollsCarousel">
         <div class="carousel-track">
@@ -326,8 +315,6 @@
           <div class="carousel-slide"><img src="images/72.jpg" alt="Кукла 2" /></div>
           <div class="carousel-slide"><img src="images/76.jpg" alt="Кукла 3" /></div>
         </div>
-        <button class="carousel-btn prev" onclick="moveSlide('dollsCarousel', -1)">‹</button>
-        <button class="carousel-btn next" onclick="moveSlide('dollsCarousel', 1)">›</button>
       </div>
       <div class="carousel-dots" id="dollsDots">
         <span class="active" onclick="goToSlide('dollsCarousel', 0)"></span>
@@ -336,19 +323,18 @@
       </div>
     </div>
 
-    <!-- Кнопка "Связаться со мной" внизу -->
-    <a href="https://vk.ru/yulia_vernyaeva" target="_blank" class="contact-btn">Связаться со мной →</a>
+    <a href="https://vk.ru/yulia_vernyaeva" target="_blank" class="contact-btn">связаться со мной</a>
   </div>
 </section>
 
 <!-- ========== ПОДВАЛ ========== -->
 <footer>
   <div class="container">
-    <p>© 2026 Юлия Верняева</p> <!-- год исправлен на 2026 -->
+    <p>© 2026 Юлия Верняева</p>
   </div>
 </footer>
 
-<!-- ========== СКРИПТ КАРУСЕЛИ ========== -->
+<!-- ========== СКРИПТ КАРУСЕЛИ (ЗАЦИКЛЕННАЯ) ========== -->
 <script>
   const carousels = {};
 
@@ -359,23 +345,28 @@
     const dots = document.getElementById(dotId).querySelectorAll('span');
     let current = 0;
     const total = slides.length;
+    let interval = setInterval(() => moveSlide(id, 1), 4000);
 
-    carousels[id] = { track, slides, dots, current, total };
+    carousels[id] = { track, slides, dots, current, total, interval };
 
     window.moveSlide = function(carouselId, direction) {
       const c = carousels[carouselId];
       if (!c) return;
+      clearInterval(c.interval);
       c.current = (c.current + direction + c.total) % c.total;
       c.track.style.transform = `translateX(-${c.current * 100}%)`;
       c.dots.forEach((dot, i) => dot.classList.toggle('active', i === c.current));
+      c.interval = setInterval(() => moveSlide(carouselId, 1), 4000);
     };
 
     window.goToSlide = function(carouselId, index) {
       const c = carousels[carouselId];
       if (!c) return;
+      clearInterval(c.interval);
       c.current = index;
       c.track.style.transform = `translateX(-${c.current * 100}%)`;
       c.dots.forEach((dot, i) => dot.classList.toggle('active', i === c.current));
+      c.interval = setInterval(() => moveSlide(carouselId, 1), 4000);
     };
 
     track.style.transform = `translateX(0%)`;
