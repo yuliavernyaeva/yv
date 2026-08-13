@@ -38,6 +38,7 @@
       margin: 0 auto;
       padding: 0 20px;
     }
+    /* ========== ШАПКА ========== */
     .header-white {
       background: var(--bg-light);
       padding: 20px 0;
@@ -83,6 +84,7 @@
     .nav a:hover {
       border-bottom-color: var(--accent-gold);
     }
+    /* ========== КАРУСЕЛЬ (БЕЗ РЕВЕРСА) ========== */
     .carousel-section {
       padding: 20px 0 50px;
       text-align: center;
@@ -134,19 +136,24 @@
       background: var(--accent-gold);
       transform: scale(1.2);
     }
+    /* ========== ФРАЗА (ЗОЛОТОМ И БЕЛЫМ) ========== */
     .carousel-quote {
       max-width: 700px;
       margin: 30px auto 20px;
       font-size: 1.6rem;
       font-weight: 300;
       letter-spacing: 0.5px;
-      color: var(--text-light);
       line-height: 1.4;
+      text-align: center;
     }
-    .carousel-quote span {
+    .carousel-quote .gold {
       color: var(--accent-gold);
       font-weight: 400;
     }
+    .carousel-quote .white {
+      color: var(--text-light);
+    }
+    /* ========== КНОПКИ ========== */
     .story-btn,
     .contact-btn {
       display: inline-block;
@@ -175,6 +182,7 @@
       background: #b8975a;
       transform: translateY(-2px);
     }
+    /* ========== БЛОК С КУКЛАМИ ========== */
     .dolls-section {
       padding: 60px 0 80px;
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -204,6 +212,7 @@
       max-height: 400px;
       object-fit: contain;
     }
+    /* ========== ПОДВАЛ ========== */
     footer {
       padding: 40px 0 60px;
       text-align: center;
@@ -213,11 +222,14 @@
       font-size: 0.8rem;
       letter-spacing: 1px;
     }
+    /* ========== АДАПТИВНОСТЬ ========== */
     @media (max-width: 768px) {
       .header-flex {
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
       }
       .nav {
+        justify-content: center;
         gap: 15px;
       }
       .nav a {
@@ -257,6 +269,7 @@
 </head>
 <body>
 
+<!-- ========== ШАПКА ========== -->
 <header class="header-white">
   <div class="container header-flex">
     <a href="index.html" class="logo-wrapper">
@@ -270,14 +283,17 @@
   </div>
 </header>
 
+<!-- ========== КАРУСЕЛЬ ========== -->
 <section class="carousel-section" id="gallery">
   <div class="container">
     <div class="carousel-container" id="mainCarousel">
-      <div class="carousel-track">
+      <div class="carousel-track" id="mainTrack">
         <div class="carousel-slide"><img src="images/2.jpg" alt="Фото 2" /></div>
         <div class="carousel-slide"><img src="images/3.jpg" alt="Фото 3" /></div>
         <div class="carousel-slide"><img src="images/8.jpg" alt="Фото 8" /></div>
         <div class="carousel-slide"><img src="images/47.jpg" alt="Фото 47" /></div>
+        <!-- КЛОН ПЕРВОГО СЛАЙДА ДЛЯ ПЛАВНОЙ ЗАЦИКЛЕННОСТИ -->
+        <div class="carousel-slide"><img src="images/2.jpg" alt="Фото 2" /></div>
       </div>
     </div>
     <div class="carousel-dots" id="mainDots">
@@ -287,24 +303,31 @@
       <span onclick="goToSlide('mainCarousel', 3)"></span>
     </div>
 
+    <!-- ФРАЗА -->
     <div class="carousel-quote">
-      Перевернула свою жизнь с ног на голову <br />и теперь занимаюсь только тем, что <span>искренне люблю</span>
+      <div class="gold">Перевернула свою жизнь</div>
+      <div class="white">с ног на голову</div>
+      <div class="white">и теперь занимаюсь только тем,</div>
+      <div class="white">что искренне люблю</div>
     </div>
 
     <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank" class="story-btn">что со мной произошло</a>
   </div>
 </section>
 
+<!-- ========== БЛОК С КУКЛАМИ ========== -->
 <section class="dolls-section" id="dolls">
   <div class="container">
     <h2>Уже больше <span>10 лет</span> создаю необыкновенных кукол <br />и учу этому других</h2>
 
     <div class="dolls-carousel">
       <div class="carousel-container" id="dollsCarousel">
-        <div class="carousel-track">
+        <div class="carousel-track" id="dollsTrack">
           <div class="carousel-slide"><img src="images/89.jpg" alt="Кукла 1" /></div>
           <div class="carousel-slide"><img src="images/72.jpg" alt="Кукла 2" /></div>
           <div class="carousel-slide"><img src="images/76.jpg" alt="Кукла 3" /></div>
+          <!-- КЛОН ПЕРВОГО СЛАЙДА ДЛЯ ПЛАВНОЙ ЗАЦИКЛЕННОСТИ -->
+          <div class="carousel-slide"><img src="images/89.jpg" alt="Кукла 1" /></div>
         </div>
       </div>
       <div class="carousel-dots" id="dollsDots">
@@ -318,53 +341,93 @@
   </div>
 </section>
 
+<!-- ========== ПОДВАЛ ========== -->
 <footer>
   <div class="container">
     <p>© 2026 Юлия Верняева</p>
   </div>
 </footer>
 
+<!-- ========== СКРИПТ КАРУСЕЛИ (БЕЗ РЕВЕРСА) ========== -->
 <script>
-  const carousels = {};
-
-  function initCarousel(id, dotId) {
+  function initCarousel(id, dotId, trackId) {
     const container = document.getElementById(id);
-    const track = container.querySelector('.carousel-track');
+    const track = document.getElementById(trackId);
     const slides = track.querySelectorAll('.carousel-slide');
     const dots = document.getElementById(dotId).querySelectorAll('span');
     let current = 0;
-    const total = slides.length;
-    let interval = setInterval(() => moveSlide(id, 1), 4000);
+    const total = slides.length - 1; // минус клон
+    let interval;
 
-    carousels[id] = { track, slides, dots, current, total, interval };
+    function goTo(index, animate = true) {
+      if (!animate) {
+        track.style.transition = 'none';
+      } else {
+        track.style.transition = 'transform 0.6s ease-in-out';
+      }
+      current = index;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      const activeDot = current >= total ? 0 : current;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === activeDot));
+    }
+
+    function moveSlide(direction) {
+      const nextIndex = current + direction;
+      if (nextIndex > total) {
+        // если дошли до клона (последний слайд) — плавно переходим к реальному первому
+        goTo(total, true);
+        setTimeout(() => {
+          track.style.transition = 'none';
+          current = 0;
+          track.style.transform = `translateX(0%)`;
+          dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
+        }, 600);
+        return;
+      }
+      if (nextIndex < 0) {
+        // если дошли до начала — переходим к клону последнего
+        goTo(0, true);
+        setTimeout(() => {
+          track.style.transition = 'none';
+          current = total;
+          track.style.transform = `translateX(-${total * 100}%)`;
+          dots.forEach((dot, i) => dot.classList.toggle('active', i === total - 1));
+        }, 600);
+        return;
+      }
+      goTo(nextIndex, true);
+    }
 
     window.moveSlide = function(carouselId, direction) {
-      const c = carousels[carouselId];
-      if (!c) return;
-      clearInterval(c.interval);
-      c.current = (c.current + direction + c.total) % c.total;
-      c.track.style.transform = `translateX(-${c.current * 100}%)`;
-      c.dots.forEach((dot, i) => dot.classList.toggle('active', i === c.current));
-      c.interval = setInterval(() => moveSlide(carouselId, 1), 4000);
+      if (carouselId === id) {
+        clearInterval(interval);
+        moveSlide(direction);
+        resetInterval();
+      }
     };
 
     window.goToSlide = function(carouselId, index) {
-      const c = carousels[carouselId];
-      if (!c) return;
-      clearInterval(c.interval);
-      c.current = index;
-      c.track.style.transform = `translateX(-${c.current * 100}%)`;
-      c.dots.forEach((dot, i) => dot.classList.toggle('active', i === c.current));
-      c.interval = setInterval(() => moveSlide(carouselId, 1), 4000);
+      if (carouselId === id) {
+        clearInterval(interval);
+        goTo(index, true);
+        resetInterval();
+      }
     };
 
+    function resetInterval() {
+      clearInterval(interval);
+      interval = setInterval(() => moveSlide(1), 4000);
+    }
+
+    // Инициализация
     track.style.transform = `translateX(0%)`;
     dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
+    resetInterval();
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    initCarousel('mainCarousel', 'mainDots');
-    initCarousel('dollsCarousel', 'dollsDots');
+    initCarousel('mainCarousel', 'mainDots', 'mainTrack');
+    initCarousel('dollsCarousel', 'dollsDots', 'dollsTrack');
   });
 </script>
 
