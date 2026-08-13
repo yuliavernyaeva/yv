@@ -147,7 +147,6 @@
     }
     /* ========== КНОПКИ ========== */
     .story-btn,
-    .contact-btn,
     .master-class-btn {
       display: inline-block;
       padding: 14px 45px;
@@ -204,29 +203,6 @@
       max-height: 400px;
       object-fit: contain;
     }
-    /* ========== НАВИГАЦИЯ (ДУБЛЬ) ========== */
-    .nav-duplicate {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .nav-duplicate a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      transition: 0.3s;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 4px;
-    }
-    .nav-duplicate a:hover {
-      color: var(--text-light);
-      border-bottom-color: var(--accent-gold);
-    }
     /* ========== ПОДВАЛ ========== */
     footer {
       padding: 40px 0 60px;
@@ -236,6 +212,25 @@
       font-weight: 300;
       font-size: 0.8rem;
       letter-spacing: 1px;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .footer-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+    }
+    .footer-nav a:hover {
+      color: var(--text-light);
+      border-bottom-color: var(--accent-gold);
     }
     /* ========== АДАПТИВНОСТЬ ========== */
     @media (max-width: 768px) {
@@ -259,7 +254,7 @@
       .dolls-carousel .carousel-slide img {
         max-height: 280px;
       }
-      .nav-duplicate {
+      .footer-nav {
         gap: 20px;
       }
     }
@@ -282,10 +277,10 @@
       .nav a {
         font-size: 0.75rem;
       }
-      .nav-duplicate {
+      .footer-nav {
         gap: 15px;
       }
-      .nav-duplicate a {
+      .footer-nav a {
         font-size: 0.75rem;
       }
     }
@@ -358,22 +353,18 @@
       </div>
     </div>
 
-    <!-- КНОПКА "МАСТЕР-КЛАССЫ" -->
     <a href="https://vk.ru/market-212429506?screen=group" target="_blank" class="master-class-btn">мастер-классы</a>
-
-    <!-- ДУБЛЬ НАВИГАЦИИ -->
-    <div class="nav-duplicate">
-      <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank">Обо мне</a>
-      <a href="https://vk.ru/dreamdollspace" target="_blank">Творчество</a>
-      <a href="https://vk.ru/yulia_vernyaeva" target="_blank">Связаться</a>
-    </div>
   </div>
 </section>
 
 <!-- ========== ПОДВАЛ ========== -->
 <footer>
   <div class="container">
-    <p>© 2026 Юлия Верняева</p>
+    <div class="footer-nav">
+      <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank">Обо мне</a>
+      <a href="https://vk.ru/dreamdollspace" target="_blank">Творчество</a>
+      <a href="https://vk.ru/yulia_vernyaeva" target="_blank">Связаться</a>
+    </div>
   </div>
 </footer>
 
