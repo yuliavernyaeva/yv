@@ -22,9 +22,7 @@
       --accent-gold: #c9a96e;
       --font-body: 'Inter', sans-serif;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-body);
       background: var(--bg-dark);
@@ -49,12 +47,6 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
-    }
-    .logo-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      text-decoration: none;
     }
     .logo-wrapper .logo-text {
       font-size: 1.2rem;
@@ -84,7 +76,7 @@
     .nav a:hover {
       border-bottom-color: var(--accent-gold);
     }
-    /* ========== КАРУСЕЛЬ (БЕЗ РЕВЕРСА) ========== */
+    /* ========== КАРУСЕЛЬ ========== */
     .carousel-section {
       padding: 20px 0 50px;
       text-align: center;
@@ -136,7 +128,7 @@
       background: var(--accent-gold);
       transform: scale(1.2);
     }
-    /* ========== ФРАЗА (ЗОЛОТОМ И БЕЛЫМ) ========== */
+    /* ========== ФРАЗА ========== */
     .carousel-quote {
       max-width: 700px;
       margin: 30px auto 20px;
@@ -155,7 +147,8 @@
     }
     /* ========== КНОПКИ ========== */
     .story-btn,
-    .contact-btn {
+    .contact-btn,
+    .master-class-btn {
       display: inline-block;
       padding: 14px 45px;
       border: 1px solid var(--accent-gold);
@@ -168,17 +161,16 @@
       font-weight: 400;
       margin-top: 10px;
     }
-    .story-btn:hover,
-    .contact-btn:hover {
+    .story-btn:hover {
       background: var(--accent-gold);
       color: var(--bg-dark);
     }
-    .contact-btn {
+    .master-class-btn {
       background: var(--accent-gold);
       color: var(--bg-dark);
       font-weight: 600;
     }
-    .contact-btn:hover {
+    .master-class-btn:hover {
       background: #b8975a;
       transform: translateY(-2px);
     }
@@ -212,6 +204,29 @@
       max-height: 400px;
       object-fit: contain;
     }
+    /* ========== НАВИГАЦИЯ (ДУБЛЬ) ========== */
+    .nav-duplicate {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-duplicate a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+    }
+    .nav-duplicate a:hover {
+      color: var(--text-light);
+      border-bottom-color: var(--accent-gold);
+    }
     /* ========== ПОДВАЛ ========== */
     footer {
       padding: 40px 0 60px;
@@ -244,6 +259,9 @@
       .dolls-carousel .carousel-slide img {
         max-height: 280px;
       }
+      .nav-duplicate {
+        gap: 20px;
+      }
     }
     @media (max-width: 480px) {
       .carousel-quote {
@@ -264,6 +282,12 @@
       .nav a {
         font-size: 0.75rem;
       }
+      .nav-duplicate {
+        gap: 15px;
+      }
+      .nav-duplicate a {
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -272,9 +296,9 @@
 <!-- ========== ШАПКА ========== -->
 <header class="header-white">
   <div class="container header-flex">
-    <a href="index.html" class="logo-wrapper">
+    <div class="logo-wrapper">
       <span class="logo-text">YULIA <span>VERNYAEVA</span></span>
-    </a>
+    </div>
     <div class="nav">
       <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank">Обо мне</a>
       <a href="https://vk.ru/dreamdollspace" target="_blank">Творчество</a>
@@ -292,7 +316,6 @@
         <div class="carousel-slide"><img src="images/3.jpg" alt="Фото 3" /></div>
         <div class="carousel-slide"><img src="images/8.jpg" alt="Фото 8" /></div>
         <div class="carousel-slide"><img src="images/47.jpg" alt="Фото 47" /></div>
-        <!-- КЛОН ПЕРВОГО СЛАЙДА ДЛЯ ПЛАВНОЙ ЗАЦИКЛЕННОСТИ -->
         <div class="carousel-slide"><img src="images/2.jpg" alt="Фото 2" /></div>
       </div>
     </div>
@@ -303,7 +326,6 @@
       <span onclick="goToSlide('mainCarousel', 3)"></span>
     </div>
 
-    <!-- ФРАЗА -->
     <div class="carousel-quote">
       <div class="gold">Перевернула свою жизнь</div>
       <div class="white">с ног на голову</div>
@@ -326,7 +348,6 @@
           <div class="carousel-slide"><img src="images/89.jpg" alt="Кукла 1" /></div>
           <div class="carousel-slide"><img src="images/72.jpg" alt="Кукла 2" /></div>
           <div class="carousel-slide"><img src="images/76.jpg" alt="Кукла 3" /></div>
-          <!-- КЛОН ПЕРВОГО СЛАЙДА ДЛЯ ПЛАВНОЙ ЗАЦИКЛЕННОСТИ -->
           <div class="carousel-slide"><img src="images/89.jpg" alt="Кукла 1" /></div>
         </div>
       </div>
@@ -337,7 +358,15 @@
       </div>
     </div>
 
-    <a href="https://vk.ru/yulia_vernyaeva" target="_blank" class="contact-btn">связаться со мной</a>
+    <!-- КНОПКА "МАСТЕР-КЛАССЫ" -->
+    <a href="https://vk.ru/market-212429506?screen=group" target="_blank" class="master-class-btn">мастер-классы</a>
+
+    <!-- ДУБЛЬ НАВИГАЦИИ -->
+    <div class="nav-duplicate">
+      <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank">Обо мне</a>
+      <a href="https://vk.ru/dreamdollspace" target="_blank">Творчество</a>
+      <a href="https://vk.ru/yulia_vernyaeva" target="_blank">Связаться</a>
+    </div>
   </div>
 </section>
 
@@ -348,7 +377,6 @@
   </div>
 </footer>
 
-<!-- ========== СКРИПТ КАРУСЕЛИ (БЕЗ РЕВЕРСА) ========== -->
 <script>
   function initCarousel(id, dotId, trackId) {
     const container = document.getElementById(id);
@@ -356,7 +384,7 @@
     const slides = track.querySelectorAll('.carousel-slide');
     const dots = document.getElementById(dotId).querySelectorAll('span');
     let current = 0;
-    const total = slides.length - 1; // минус клон
+    const total = slides.length - 1;
     let interval;
 
     function goTo(index, animate = true) {
@@ -374,18 +402,16 @@
     function moveSlide(direction) {
       const nextIndex = current + direction;
       if (nextIndex > total) {
-        // если дошли до клона (последний слайд) — плавно переходим к реальному первому
         goTo(total, true);
         setTimeout(() => {
           track.style.transition = 'none';
           current = 0;
-          track.style.transform = `translateX(0%)`;
+          track.style.transform = 'translateX(0%)';
           dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
         }, 600);
         return;
       }
       if (nextIndex < 0) {
-        // если дошли до начала — переходим к клону последнего
         goTo(0, true);
         setTimeout(() => {
           track.style.transition = 'none';
@@ -419,8 +445,7 @@
       interval = setInterval(() => moveSlide(1), 4000);
     }
 
-    // Инициализация
-    track.style.transform = `translateX(0%)`;
+    track.style.transform = 'translateX(0%)';
     dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
     resetInterval();
   }
@@ -430,6 +455,5 @@
     initCarousel('dollsCarousel', 'dollsDots', 'dollsTrack');
   });
 </script>
-
 </body>
 </html>
