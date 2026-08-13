@@ -111,8 +111,9 @@
     }
     .carousel-slide img {
       width: 100%;
+      height: auto;
       max-height: 550px;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
       filter: grayscale(0.1);
       transition: 0.5s;
@@ -159,7 +160,7 @@
     }
     .carousel-quote {
       max-width: 700px;
-      margin: 30px auto 0;
+      margin: 30px auto 20px;
       font-size: 1.6rem;
       font-weight: 300;
       letter-spacing: 0.5px;
@@ -169,6 +170,24 @@
     .carousel-quote span {
       color: var(--accent-gold);
       font-weight: 400;
+    }
+    /* ========== КНОПКА "ЧТО СО МНОЙ ПРОИЗОШЛО" ========== */
+    .story-btn {
+      display: inline-block;
+      padding: 14px 45px;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.3s;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+    .story-btn:hover {
+      background: var(--accent-gold);
+      color: var(--bg-dark);
     }
     /* ========== БЛОК С КУКЛАМИ ========== */
     .dolls-section {
@@ -198,22 +217,25 @@
     }
     .dolls-carousel .carousel-slide img {
       max-height: 400px;
+      object-fit: contain;
     }
-    .dolls-link {
+    /* ========== КНОПКА "СВЯЗАТЬСЯ СО МНОЙ" ВНИЗУ ========== */
+    .contact-btn {
       display: inline-block;
-      padding: 14px 50px;
-      border: 1px solid var(--accent-gold);
-      color: var(--accent-gold);
+      padding: 16px 55px;
+      background: var(--accent-gold);
+      color: var(--bg-dark);
       text-decoration: none;
       font-size: 0.9rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       transition: 0.3s;
-      font-weight: 400;
+      font-weight: 600;
+      margin-top: 20px;
     }
-    .dolls-link:hover {
-      background: var(--accent-gold);
-      color: var(--bg-dark);
+    .contact-btn:hover {
+      background: #b8975a;
+      transform: translateY(-2px);
     }
     /* ========== ПОДВАЛ ========== */
     footer {
@@ -252,15 +274,15 @@
       <span class="logo-text">YULIA <span>VERNYAEVA</span></span>
     </a>
     <div class="nav">
-      <a href="#gallery">Фото</a>
-      <a href="#dolls">Куклы</a>
-      <a href="#contact">Связаться</a>
+      <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank">Обо мне</a>
+      <a href="https://vk.ru/dreamdollspace" target="_blank">Творчество</a>
+      <a href="https://vk.ru/yulia_vernyaeva" target="_blank">Связаться</a>
     </div>
   </div>
 </header>
 
 <!-- ========== ОСНОВНАЯ КАРУСЕЛЬ ========== -->
-<section id="gallery" class="carousel-section">
+<section class="carousel-section" id="gallery">
   <div class="container">
     <!-- Карусель -->
     <div class="carousel-container" id="mainCarousel">
@@ -284,11 +306,14 @@
     <div class="carousel-quote">
       «Перевернула свою жизнь с ног на голову <br />и теперь занимаюсь только тем, что <span>искренне люблю</span>»
     </div>
+
+    <!-- Новая кнопка "что со мной произошло" -->
+    <a href="https://nenaprasno.ru/media/articles/sobytiya/borba-s-rakom-pryamoy-kishki-istoriya-yulii-vernyaevoy/" target="_blank" class="story-btn">что со мной произошло →</a>
   </div>
 </section>
 
 <!-- ========== БЛОК С КУКЛАМИ ========== -->
-<section id="dolls" class="dolls-section">
+<section class="dolls-section" id="dolls">
   <div class="container">
     <h2>Уже больше <span>10 лет</span> создаю необыкновенных кукол <br />и учу этому других</h2>
 
@@ -310,13 +335,13 @@
       </div>
     </div>
 
-    <!-- Ссылка на VK -->
-    <a href="https://vk.ru/dreamdollspace" target="_blank" class="dolls-link">Моя страница в VK →</a>
+    <!-- Кнопка "Связаться со мной" внизу -->
+    <a href="https://vk.ru/yulia_vernyaeva" target="_blank" class="contact-btn">Связаться со мной →</a>
   </div>
 </section>
 
 <!-- ========== ПОДВАЛ ========== -->
-<footer id="contact">
+<footer>
   <div class="container">
     <p>© 2025 Юлия Верняева</p>
   </div>
@@ -324,7 +349,6 @@
 
 <!-- ========== СКРИПТ КАРУСЕЛИ ========== -->
 <script>
-  // Универсальная функция для каруселей
   const carousels = {};
 
   function initCarousel(id, dotId) {
@@ -337,13 +361,6 @@
 
     carousels[id] = { track, slides, dots, current, total };
 
-    // Обновление отображения
-    function update() {
-      track.style.transform = `translateX(-${current * 100}%)`;
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
-    }
-
-    // Привязываем функции к глобальному объекту, чтобы их можно было вызывать из onclick
     window.moveSlide = function(carouselId, direction) {
       const c = carousels[carouselId];
       if (!c) return;
@@ -360,11 +377,10 @@
       c.dots.forEach((dot, i) => dot.classList.toggle('active', i === c.current));
     };
 
-    // Инициализация
-    update();
+    track.style.transform = `translateX(0%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
   }
 
-  // Запускаем карусели после загрузки страницы
   document.addEventListener('DOMContentLoaded', function() {
     initCarousel('mainCarousel', 'mainDots');
     initCarousel('dollsCarousel', 'dollsDots');
